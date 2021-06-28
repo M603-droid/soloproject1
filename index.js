@@ -194,6 +194,35 @@ console.log('Today is: ', whatDayIsIt());
         values: [3, 3, 4]
     }
 */
+console.log('========================================================================')
+console.log("----------EXERCISE 8-------------------------------------------------")
+
+const rollTheDices = function(number){
+    let theDiceRoll = []
+    for(i=0; i<number; i++)
+    {
+      theDiceRoll.push(dice())
+    }
+    let rolling =
+    {
+        sum : 0,
+        value: []
+    }
+    
+    let sumOfArray = 0
+
+    for(i= 0 ; i< theDiceRoll.length ; i++)
+     {
+      sumOfArray = theDiceRoll[i] + sumOfArray
+        }
+        
+        rolling.sum = sumOfArray
+        rolling.value = theDiceRoll
+        return rolling
+
+    }
+    console.log(rollTheDices(5))
+
 
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
@@ -202,6 +231,17 @@ console.log('Today is: ', whatDayIsIt());
 /* Ex.10
    Write a function called "isTodayMyBirthday" which should return true if today's your birthday, false otherwise.
 */
+const isTodayMyBirthday = function(myBirthDate,myBirthMonth){
+
+  let date = new Date()
+  if(date.getDate() === myBirthDate && date.getMonth() === myBirthMonth-1){
+      return true
+  }
+  else {
+      return false
+  }
+}
+console.log(isTodayMyBirthday(28,6))
 
 // JS Arrays // Objs
 // NOTE: movies array is defined at the end of this file!
@@ -209,6 +249,19 @@ console.log('Today is: ', whatDayIsIt());
 /* Ex.11
    Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 11-----------')
+const deleteProp = function(str,obj){
+   
+    delete obj.name;
+    return obj
+}
+let givenObject = {
+    name: 'MRIDULA',
+    age:'30',
+    phone:'0000000'
+}
+console.log(deleteProp('name', givenObject))
 /* This movies array is used throughout the exercises. Please don't change it :)  */
 const movies = [
     {
@@ -327,41 +380,155 @@ const movies = [
 
 /* Ex.12 
     Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
-*/
+*/   
+console.log('========================================================================')
+console.log('----------EXERCISE 12-----------')
 
+const olderMovie = function(){
+    let sortedMovies = movies.sort(function(a, b) { 
+        return a.Year - b.Year
+    }) 
+    return sortedMovies[0]
+}
+console.log(olderMovie())
 /* Ex.13
     Write a function called "countMovies" which returns the number of movies contained in the array provided at the end of this file.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 13-----------')
+const countMovies = function(){
+  return movies.length
+}
+console.log(countMovies())
 
 /* Ex.14
     Write a function called "onlyTheTitles" which creates an array with just the titles of the movies provided in the array at the end of the file.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 14-----------')
+const onlyTheTitles = function(){
+
+  let newArrayOfTitles = []
+  for(i=0; i<movies.length; i++)
+      {
+        newArrayOfTitles.push(movies[i].Title)
+      }
+      return newArrayOfTitles
+  }
+  console.log('onlyTheTitles', onlyTheTitles())
+  
 
 /* Ex.15
    Write a function called "onlyInThisMillennium" which returns only the movies produced in this millennium.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 15-----------')
+const  onlyInThisMillennium = function(){
+  let milleniumArray = []
+  for (let j = 0; j < movies.length; j++){
+      if(movies[j].Year > 2000){
+        milleniumArray.push(movies[j])
+      }
+  }
+  return milleniumArray
+}
+
+
+console.log('our millenium movies: ', onlyInThisMillennium());
+
 
 /* Ex.16 
     Write a function called "getMovieById" which receives an id as a parameter and returns the movie with the given id.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 16-----------')
+const getMovieById = function(id){
+  let givenMovieId = []
+  for (let i = 0; i < movies.length; i++){
+      if(id === movies[i].imdbID){
+        givenMovieId.push(movies[i])
+      }
+  }
+  return givenMovieId
+}
+
+console.log('given movie id ', getMovieById("tt2395427"));
 
 /* Ex.17
     Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 17-----------')
 
+const sumAllTheYears = function(){
+    let newSum = 0
+    for(i=0; i<movies.length; i++){
+        newSum = parseInt(movies[i].Year) + newSum
+    }
+    return newSum
+
+}
+console.log(sumAllTheYears())
 /* Ex.18
     Write a function called "searchByTitle" which receives a string as a parameter and returns all the movies which contain that string in the title.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 18-----------')
+
+const searchByTitle = function(str){
+    let searchedMovies = []
+    for(i=0; i<movies.length; i++){
+    if(movies[i].Title=== str){
+        searchedMovies.push(movies[i])
+    }
+    }
+
+    return searchedMovies
+
+}
+console.log(searchByTitle( 'Lord of the Flies'))
 
 /* Ex.19
     Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
     this object should contain an array called "match", made by all the movies which contain the given string in the title,
     and another array "unmatch" with all the remaining ones.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 19-----------')
+
+const searchAndDivide = function(str){
+  let movieMatched = []
+  let movieUnmatched = []
+  for(i=0; i<movies.length; i++){
+  if(movies[i].Title=== str){
+      movieMatched.push(movies[i])
+  }
+  else {
+      movieUnmatched.push(movies[i])
+  }
+  }
+  filteredMovie = 
+  {
+      match:movieMatched,
+      unmatched:movieUnmatched
+  }
+
+  return filteredMovie
+
+}
+console.log(searchAndDivide('Lord of the Flies'))
 
 /* Ex.20
    Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
 */
+console.log('========================================================================')
+console.log('----------EXERCISE 20-----------')
+
+const removeIndex = function(num){
+  movies.splice(num,1)
+ return movies
+}
+console.log(removeIndex(3))
 
 // [EXTRAS] JS Advanced
 
